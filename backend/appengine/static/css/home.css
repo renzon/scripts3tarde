@@ -1,0 +1,13 @@
+span {
+    color: green;
+}
+
+.amarelo {
+    color: #ffff00;
+    background-color: #007bb6
+}
+
+.amarelo:hover {
+    color: red;
+    font-style: italic;
+}
