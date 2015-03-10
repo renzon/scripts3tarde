@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
-    Olá {{ name }} {{ lastname }}
+{% extends 'usuario/usuario_base.html' %}
+{% block title %}Olá{% endblock %}
+{% block body %}
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-md-12 column">
+        Olá {{ name }} {{ lastname }}
+        <a href="{{ usuario_path }}" class="btn btn-success"> Usuario &raquo;</a>
 
-</body>
-</html>
+      </div>
+    </div>
+  </div>
+{% endblock %}
