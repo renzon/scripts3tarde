@@ -1,0 +1,24 @@
+{% extends 'usuario/usuario_base.html' %}
+{% block title %}Formulário de Usuário{% endblock %}
+{% block body %}
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-md-4 column">
+        <form action="/usuario/salvar" role="form">
+          <div class="form-group">
+            <label for="nomeInput">Nome</label>
+            <input type="text" class="form-control" name="nome"
+                   id="nomeInput"/>
+          </div>
+          <div class="form-group">
+            <label for="sobrenomeInput">Sobrenome</label>
+            <input type="text" class="form-control" name="sobrenome"
+                   id="sobrenomeInput"/>
+          </div>
+
+          <button type="submit" class="btn btn-default">Salvar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
