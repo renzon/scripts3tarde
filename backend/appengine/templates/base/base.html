@@ -56,6 +56,9 @@
           <li {{ 'class="active"'|safe if tab=='USER' }}>
             <a href="/usuario">Usuário</a>
           </li>
+          <li {{ 'class="active"'|safe if tab=='CATEGORIAS' }}>
+            <a href="/categorias">Categorias</a>
+          </li>
           {% if _logged_user and 'ADMIN' in _logged_user.groups %}
             <li {{ 'class="active"'|safe if tab=='ADMIN' }}>
               <a href="/admin">{% trans %}Admin{% endtrans %}</a>
