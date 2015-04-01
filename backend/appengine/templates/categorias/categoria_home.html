@@ -8,6 +8,7 @@
     <form action="{{ salvar_path }}" method="post">
     {{ csrf_input() }}
     {{ form_input('Nome','nome','','') }}
+    {{ form_input('Quantidade','quantidade','','') }}
     <button class="btn btn-success" type="submit">Salvar</button>
 </form>
 
