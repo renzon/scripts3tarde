@@ -12,8 +12,7 @@ from tekton.router import to_path
 
 @no_csrf
 def index():
-    query = Categoria.query()
-    query = query.order(Categoria.nome)
+    query = Categoria.query_ordenada_por_nome()
     categorias = query.fetch()
     edit_path_base = to_path(edit)
     deletar_path_base = to_path(deletar)
