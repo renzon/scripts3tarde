@@ -4,12 +4,15 @@ from google.appengine.ext import ndb
 from categoria.categoria_model import Categoria
 from config.template_middleware import TemplateResponse
 from gaecookie.decorator import no_csrf
+from gaepermission.decorator import login_required, permissions
+from permission_app.model import ADMIN, MANAGER
 from routes.categorias import edit
 from routes.categorias.new import salvar
 from tekton.gae.middleware.redirect import RedirectResponse
 from tekton.router import to_path
 
 
+@permissions(MANAGER)
 @no_csrf
 def index():
     query = Categoria.query_ordenada_por_nome()
@@ -20,15 +23,16 @@ def index():
     for cat in categorias:
         key = cat.key
         id = key.id()
-        cat.edit_path=to_path(edit_path_base, id)
-        cat.deletar_path=to_path(deletar_path_base, id)
+        cat.edit_path = to_path(edit_path_base, id)
+        cat.deletar_path = to_path(deletar_path_base, id)
 
     salvar_path = to_path(salvar)
     ctx = {'salvar_path': salvar_path,
            'categorias': categorias}
     return TemplateResponse(ctx, 'categorias/categoria_home.html')
 
+
 def deletar(categoria_id):
-    key= ndb.Key(Categoria, int(categoria_id))
+    key = ndb.Key(Categoria, int(categoria_id))
     key.delete()
     return RedirectResponse(index)
