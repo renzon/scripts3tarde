@@ -1,61 +1,23 @@
-var olaMundo = function olaMundo() {
+$(document).ready(function () {
+  var $txtInput = $('#txt-input');
+  var $listaDiv = $('#lista-div');
+  var $msgUl = $('#msg-ul');
 
-  console.log('Olá Mundo')
-};
+  $('#jq').click(function fcn(evento) {
+    $listaDiv.slideToggle();
+  });
 
-olaMundo();
+  $('#jq2').click(function fcn(evento) {
+    $listaDiv.empty();
+  });
 
-var outroMundo = olaMundo;
-
-outroMundo();
-
-function executarEContatenarString(fcn) {
-  return 'Executando função com retorno: ' + fcn();
-}
-
-function blah() {
-  return 'Blah';
-}
-function blah2() {
-  return 'Blah2';
-}
-
-console.log(executarEContatenarString(blah));
-console.log(executarEContatenarString(blah2));
-
-function criarFuncaoTransladar(fcn){
-  function transladar(x){
-    return fcn(x)+ 1;
-  }
-
-  return transladar;
-}
-
-function reta45(x){
-  return x;
-}
-
-var retaTransladada=criarFuncaoTransladar(reta45);
-
-console.log(retaTransladada(1));
-console.log(retaTransladada(2));
-
-var obj={'a':1, b:2, 1:'utra coisa', t:retaTransladada };
-
-
-console.log(obj);
-console.log(obj.a);
-console.log(obj['a']);
-console.log(obj[1]);
-console.log(obj.t(3))
-
-
-
-
-
-
-
-
-
-
-
+  $('#enviar-btn').click(function () {
+    var msg = $txtInput.val();
+    $txtInput.val('');
+    var item = '<li>' + msg + '</li>';
+    $msgUl.prepend(item);
+    $msgUl.fadeOut(400,function(){
+      $msgUl.fadeIn(2000);
+    });
+  });
+});
