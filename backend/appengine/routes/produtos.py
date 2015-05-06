@@ -13,11 +13,9 @@ def index(categoria_selecionada=None):
          'salvar_path':to_path(salvar),
          'pesquisar_path': to_path(index)}
     if categoria_selecionada is None:
-        ctx['produtos']=Produto.query_ordenada_por_nome().fetch()
         ctx['categoria_selecionada']= None
     else:
         ctx['categoria_selecionada']=Categoria.get_by_id(int(categoria_selecionada))
-        ctx['produtos']=Produto.query_por_categoria_ordenados_por_nome(categoria_selecionada).fetch()
     return TemplateResponse(ctx, 'produtos/produto_home.html')
 
 

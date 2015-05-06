@@ -11,6 +11,12 @@ $(document).ready(function () {
     $produtosLista.append(li);
   }
 
+  $.get('/rest/produtos/listar',function(produtos){
+    $.each(produtos, function(i, produto){
+      adicionarProduto(produto);
+    });
+  });
+
   $ajaxImg.hide();
   var $msgUl = $('#msg-ul');
 
