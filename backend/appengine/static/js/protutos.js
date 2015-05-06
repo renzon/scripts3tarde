@@ -3,6 +3,14 @@ $(document).ready(function () {
   var $listaDiv = $('#lista-div');
   var $inputNome = $("input[name='nome']");
   var $ajaxImg = $('#ajax-img');
+  var $produtosLista = $('#produtos-lista');
+
+  function adicionarProduto(produto) {
+    var li = '<li><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>';
+    li += produto.nome + ' - ' + produto.preco + '</li>';
+    $produtosLista.append(li);
+  }
+
   $ajaxImg.hide();
   var $msgUl = $('#msg-ul');
 
@@ -18,21 +26,21 @@ $(document).ready(function () {
   }
 
   var $salvarBotao = $('#salvar-produto-btn');
-  $salvarBotao.click(function(){
+  $salvarBotao.click(function () {
     $('div.has-error').removeClass('has-error');
     $('span.help-block').text('');
     $ajaxImg.fadeIn();
-    $salvarBotao.attr('disabled','disabled');
-    $.post('/rest/produtos/salvar',obterInputs(), function(produto){
-      console.log(produto);
+    $salvarBotao.attr('disabled', 'disabled');
+    $.post('/rest/produtos/salvar', obterInputs(), function (produto) {
+      adicionarProduto(produto);
       $('input.form-control').val('');
-    }).error(function(erro){
+    }).error(function (erro) {
       var errosJson = erro.responseJSON;
-      for (propriedade in  errosJson){
-        $('#'+propriedade+'-div').addClass('has-error');
-        $('#'+propriedade+'-span').text(errosJson[propriedade]);
+      for (propriedade in  errosJson) {
+        $('#' + propriedade + '-div').addClass('has-error');
+        $('#' + propriedade + '-span').text(errosJson[propriedade]);
       }
-    }).always(function(){
+    }).always(function () {
       $ajaxImg.fadeOut();
       $salvarBotao.removeAttr('disabled');
     });

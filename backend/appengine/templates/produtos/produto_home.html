@@ -35,9 +35,9 @@
               {{ select('categoria_selecionada') }}
               <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
             </form>
-            <ul>
+            <ul id="produtos-lista">
               {% for prod in produtos %}
-                <li>{{ prod.nome }} - {{ prod.preco }}</li>
+                <li><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>{{ prod.nome }} - {{ prod.preco }}</li>
               {% endfor %}
             </ul>
           </div>
