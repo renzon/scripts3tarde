@@ -12,7 +12,7 @@
         <div class="well">
           <h3>Formulário de Produto</h3>
 
-          <form action="{{ salvar_path }}" method="post">
+{#          <form action="{{ salvar_path }}" method="post">#}
             {{ csrf_input() }}
             Categoria:
             {% macro select(nome) %}
@@ -26,8 +26,8 @@
             {{ select('categoria') }}
             {{ form_input('Nome','nome','','') }}
             {{ form_input('Preco','preco','','') }}
-            <button class="btn btn-success" type="submit">Salvar</button>
-          </form>
+            <button id="salvar-produto-btn" class="btn btn-success" >Salvar</button>
+{#          </form>#}
           <button id="jq">Esconder/Mostrar</button>
           <button id="jq2">Remover</button>
         <input type="text" id="txt-input" /> <button id="enviar-btn">Enviar</button>
