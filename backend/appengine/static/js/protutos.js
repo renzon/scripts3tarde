@@ -6,13 +6,19 @@ $(document).ready(function () {
   var $produtosLista = $('#produtos-lista');
 
   function adicionarProduto(produto) {
-    var li = '<li><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>';
+    var li = '<li id="li-' + produto.id + '" ><button id="btn-apagar-' + produto.id;
+    li += '" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>';
     li += produto.nome + ' - ' + produto.preco + '</li>';
     $produtosLista.append(li);
+    $('#btn-apagar-' + produto.id).click(function () {
+      $.post('/rest/produtos/apagar', {'produto_id': produto.id}, function () {
+        $('#li-' + produto.id).remove();
+      });
+    });
   }
 
-  $.get('/rest/produtos/listar',function(produtos){
-    $.each(produtos, function(i, produto){
+  $.get('/rest/produtos/listar', function (produtos) {
+    $.each(produtos, function (i, produto) {
       adicionarProduto(produto);
     });
   });
