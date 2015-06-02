@@ -9,6 +9,7 @@ from gaeforms.ndb.property import SimpleCurrency
 class Categoria(ndb.Model):
     nome = ndb.StringProperty(required=True)
     quantidade = ndb.IntegerProperty(required=True)
+
     criacao = ndb.DateTimeProperty(auto_now_add=True)
 
     @classmethod
