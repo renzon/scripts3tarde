@@ -12,11 +12,23 @@ from tekton.router import to_path
 
 @login_not_required
 @no_csrf
+def download(_handler,id,filename):
+    comando=blob_facade.get_blob_file_cmd(id)
+    arquivo=comando()
+    _handler.send_blob(arquivo.blob_key)
+
+@login_not_required
+@no_csrf
 def index():
     comando=blob_facade.list_blob_files_cmd()
     arquivos=comando()
+    download_path=to_path(download)
+    for arq in arquivos:
+        arq.download_path=to_path(download_path,arq.key.id(),arq.filename)
+
     ctx={'arquivos':arquivos}
     return TemplateResponse(ctx, 'updown_home.html')
+
 
 
 @login_not_required
