@@ -13,7 +13,10 @@ from tekton.router import to_path
 @login_not_required
 @no_csrf
 def index():
-    pass
+    comando=blob_facade.list_blob_files_cmd()
+    arquivos=comando()
+    ctx={'arquivos':arquivos}
+    return TemplateResponse(ctx, 'updown_home.html')
 
 
 @login_not_required
